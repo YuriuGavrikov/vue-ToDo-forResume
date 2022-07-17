@@ -8,9 +8,6 @@ const App = {
       }
    },
    methods: {
-      inputChangeHandler(event) {
-         this.inputValue = event.target.value
-      },
       addNewNote() {
          if (this.inputValue !== '') {
             this.notes.push(this.inputValue)
@@ -19,6 +16,18 @@ const App = {
       },
       removeNote(i, event) {
          this.notes.splice(i, 1)
+      }
+   },
+   computed: {
+      doubleCountComputed() {
+         console.log('doubleCountComputed');
+         return this.notes.length * 2
+      },
+   },
+   watch: {
+      inputValue(value) {
+         if (value.length > 10) this.inputValue = '';
+         console.log('input Value chenged', value);
       }
    }
 }
