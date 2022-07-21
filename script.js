@@ -1,17 +1,28 @@
 const App = {
    data() {
       return {
+         title: 'Типа чат',
+         userName: 'Введите ваше имя',
          placeholderString: 'Введите название заметки',
-         title: 'Список заметок',
+         userNameValue: '',
          inputValue: '',
-         notes: ['Заметка 1', 'Заметка 2', 'Заметка 3']
+         noteItem: {},
+         notes: [{ n: 'yuiri', t: 'Заметка 1' }, { n: 'max', t: 'Заметка 1' }, { n: 'andrey', t: 'Заметка 1' }]
       }
    },
    methods: {
       addNewNote() {
-         if (this.inputValue !== '') {
-            this.notes.push(this.inputValue)
+         if (this.inputValue !== '' && this.userNameValue !== '') {
+
+            this.noteItem.n = this.userNameValue
+            this.noteItem.t = this.inputValue
+
+            this.notes.push(this.noteItem)
+
+            this.userNameValue = ''
             this.inputValue = ''
+
+            console.log(this.notes);
          }
       },
       removeNote(i, event) {
@@ -26,7 +37,7 @@ const App = {
    },
    watch: {
       inputValue(value) {
-         if (value.length > 10) this.inputValue = '';
+         if (value.length > 20) this.inputValue = '';
          console.log('input Value chenged', value);
       }
    }

@@ -12,8 +12,9 @@
 <body>
    <div class="container" id="app">
       <div class="card">
-         <h1 :style="{color: inputValue.length < 5 ? 'red' : 'blue'}">{{ title }}</h1>
+         <h1>{{ title }}</h1>
          <div class="form-control">
+            <input type="text" :placeholder="userName" v-model="userNameValue" @keypress.enter="addNewNote" />
             <input type="text" :placeholder="placeholderString" v-model="inputValue" @keypress.enter="addNewNote" />
          </div>
          <button class="btn" @click="addNewNote">Добавить</button>
@@ -25,7 +26,10 @@
                   'primary': true,
                   'bold': note.length>5
                }">({{ i + 1 }}){{ note }}</span> -->
-               <span :class="['bold', {'primary': note.length > 5}]">({{ i + 1 }}){{ note }}</span>
+               <div>
+                  <h2>{{ note.n }}</h2>
+                  <div>{{ note.t }}</div>
+               </div>
                <button class="btn danger" @click="removeNote(i)">Удалить</button>
             </li>
             <hr />
